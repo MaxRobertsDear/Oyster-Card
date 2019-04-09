@@ -7,15 +7,19 @@ class OysterCard
     @balance = 0
   end
 
-  def top_up(input)
-    raise "card limit of £#{ CARD_LIMIT } reached" if limit_exceeded?(input)
-    @balance += input
+  def top_up(amount)
+    raise "card limit of £#{ CARD_LIMIT } reached" if limit_exceeded?(amount)
+    @balance += amount
+  end
+
+  def deduct(amount)
+    @balance -= amount 
   end
 
   private
 
-  def limit_exceeded?(input)
-    user_top_up = @balance + input
+  def limit_exceeded?(amount)
+    user_top_up = @balance + amount
     user_top_up > CARD_LIMIT
   end
 

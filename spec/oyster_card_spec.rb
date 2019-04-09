@@ -11,12 +11,19 @@ describe OysterCard do
   end
   describe '#top_up' do
     it 'tops the oyster card up by 10' do
-      expect { subject.top_up(10)}.to change{ subject.balance }.by 10
+      expect { subject.top_up(10)}.to change { subject.balance }.by 10
     end
 
     it 'raises an error when card limit of 90 is reached' do
       subject.top_up(90)
       expect { subject.top_up(1)}.to raise_error 'card limit of £90 reached'
+    end
+  end
+
+  describe '#deduct' do
+    it 'deducts 10 from the oyster card' do 
+      subject.top_up(20)
+      expect { subject.deduct(10)}.to change { subject.balance }.by -10
     end
   end
 end
