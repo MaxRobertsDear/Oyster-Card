@@ -21,21 +21,24 @@ describe OysterCard do
   end
 
   describe '#in_journey?' do
+    let(:entry_station){ double :station }
+
     it 'is initially not in_journey' do
       expect(subject).not_to be_in_journey
     end
 
-    it 'raises error if insufficient funds on touch_in' do
-      expect { subject.touch_in }.to raise_error "insufficient funds" 
+    it 'raises error if insufficient funds on touch_in' do      
+      expect { subject.touch_in(entry_station) }.to raise_error "insufficient funds" 
     end
     
     it 'charges the card on journey completion' do
       expect { subject.touch_out }.to change{ subject.balance }.by( - OysterCard::MINIMUM_CHARGE ) 
     end
 
+    it 'stores the entry station' do   
+      subject.top_up(50)
+      subject.touch_in(entry_station)
+      expect(subject.touch_in(entry_station)).to eq entry_station 
+    end
   end
-
-
-
-
 end
