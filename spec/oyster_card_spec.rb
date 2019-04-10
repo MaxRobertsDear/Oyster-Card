@@ -22,6 +22,8 @@ describe OysterCard do
 
   describe '#in_journey?' do
     let(:entry_station){ double :station }
+    let(:exit_station){ double :station }
+    let(:journey){{ entry_station: entry_station, exit_station: exit_station }}
 
     it 'is initially not in_journey' do
       expect(subject).not_to be_in_journey
@@ -32,13 +34,32 @@ describe OysterCard do
     end
     
     it 'charges the card on journey completion' do
-      expect { subject.touch_out }.to change{ subject.balance }.by( - OysterCard::MINIMUM_CHARGE ) 
+      expect { subject.touch_out(exit_station) }.to change{ subject.balance }.by( - OysterCard::MINIMUM_CHARGE ) 
     end
 
     it 'stores the entry station' do   
       subject.top_up(50)
       subject.touch_in(entry_station)
-      expect(subject.touch_in(entry_station)).to eq entry_station 
+      expect(subject.entry_station).to eq entry_station
     end
+
+    it 'stores the exit station' do
+      subject.top_up(50)
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.exit_station).to eq exit_station
+    end
+
+    it 'shows a list of empty journeys on initialisation' do
+      expect(subject.journeys).to be_empty
+    end
+
+    it 'stores journeys' do
+      subject.top_up(50)
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.journeys).to include journey 
+    end
+
   end
 end
