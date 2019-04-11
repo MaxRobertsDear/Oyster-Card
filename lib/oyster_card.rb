@@ -8,10 +8,7 @@ class OysterCard
   def initialize
     @balance = 0
     @in_journey = in_journey
-    @entry_station = nil
-    @exit_station = nil
     @journeys = []
-    @journey = {}
   end
 
   def top_up(amount)
@@ -24,7 +21,6 @@ class OysterCard
     @in_journey = true
     @entry_station = entry_station 
     @journey = { entry_station: @entry_station }
-
   end
 
   def touch_out(exit_station)
@@ -33,14 +29,13 @@ class OysterCard
     @exit_station = exit_station
     @journey[:exit_station] = @exit_station 
     @entry_station = nil 
-    @journeys << @journey 
+    update_journeys
   end
+
 
   def in_journey?
     !!entry_station 
   end
-  
-
 
   private
   
@@ -49,9 +44,13 @@ class OysterCard
   def limit_exceeded?(amount)
     user_top_up = @balance + amount
     user_top_up > CARD_LIMIT
-  end
-
+  end 
   def deduct(amount)
     @balance -= amount 
   end
+
+  def update_journeys
+    @journeys << journey
+  end
+
 end
