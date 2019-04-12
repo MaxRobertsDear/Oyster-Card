@@ -6,7 +6,7 @@ class Station
     @entry_station = entry_station
   end
 
-  def entry(entry_station)
+  def entry(entry_station) 
     return entry_station 
   end
 
