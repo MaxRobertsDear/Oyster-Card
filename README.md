@@ -1,7 +1,6 @@
 ## Oystercard
-##### Attempting to create a public bicycle hire scheme from scratch
 
-### Makers Academy - Week 1 Project
+### Makers Academy - Week 2 Project
 
 #### Objectives for the week (that are met by completing this challenge)
 * ✅ Use all of week 1's skills 
