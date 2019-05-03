@@ -16,7 +16,7 @@
 
 #### Challenges
 * [x] Set up the project:
-  * [x] Create a Gemfile](01_create_gemfile.md)
+  * [x] [Create a Gemfile](01_create_gemfile.md)
   * [x] [Create RSpec conventional files](02_initialize_rspec.md)
   * [x] [Review debugging basics](03_debugging.md)
 
@@ -39,9 +39,9 @@
 * [x] Refactor to extract Journey class
   * [x] [Handling a journey without a touch out](14_no_touch_in_or_out.md)
 
-* [x] Refactoring: get the code into shape
-  * [x] [Extracting the journey log out of the Oystercard](15_extracting_journey_log.md)
+* [ ] Refactoring: get the code into shape
+  * [ ] [Extracting the journey log out of the Oystercard](15_extracting_journey_log.md)
 
-* [x] Make fares depends on zones
-  * [x] Calculating the fare between zones](16_fare_for_zones.md)
+* [ ] Make fares depends on zones
+  * [ ] [Calculating the fare between zones](16_fare_for_zones.md)
 
